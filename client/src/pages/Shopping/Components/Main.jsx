@@ -69,7 +69,7 @@ const Main = () => {
         <div>
             <div className=' w-full flex justify-center overflow-y-auto scrollbar-hide' style={{ height: 'calc(100vh - 2.5rem - 3rem)' }}>
                 {/* Entire Screen */}
-                <div className='grid grid-cols-1 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 gap-8 p-4'>
+                <div className='grid grid-cols-1 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 gap-8 p-4'>
                     {data.map((item, index) => (
                         <div key={index} className='w-90 h-130 border flex flex-col'>
 
