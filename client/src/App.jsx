@@ -1,13 +1,11 @@
-import { useState } from "react"
-import Auth from "./pages/Shopping/Auth/Auth"
-import Home from "./pages/Shopping/Home"
+import Handle from "./pages/Shopping/Auth/Handle"
 
 
 function App() {
-  const [authUser, setAuthuser] = useState(false)
   return (
     <>
-      {authUser?<Home setAuthuser={setAuthuser}></Home>:<Auth setAuthuser={setAuthuser} ></Auth>}
+      {/* {authUser?<Home authUser ></Home>:<Handle authUser={setAuthuser} ></Handle>} */}
+      <Handle></Handle>
     </>
   )
 }

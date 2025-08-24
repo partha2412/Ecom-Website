@@ -34,60 +34,103 @@ const Main = () => {
             about: `A pair of white shoes, has regular Styling, lace-ups closure PU Upper Cushioned footbed Textured and patterned outsole`,
         },
         {
-            image: "",
-            price: "",
-            title: "",
-            about: "",
+            image: "https://assets-jiocdn.ajio.com/medias/sys_master/root/20250623/0D6o/68593e4a0f920c69cc45ce17/-473Wx593H-701799238-white-MODEL.jpg",
+            price: "₹1,224",
+            title: `RED TAPE Men Casual Shoes`,
+            about: `Care Wipe with a clean, dry cloth when needed Fastening Lace Fastening Warranty Wipe with a clean, dry cloth to remove the dust.`,
         },
         {
-            image: "",
-            price: "",
-            title: "",
-            about: "",
+            image: "https://assets-jiocdn.ajio.com/medias/sys_master/root/20250324/4Nwb/67e0921955340d4b4f835eb3/-473Wx593H-701369777-black-MODEL2.jpg",
+            price: "₹1,206",
+            title: "Men Lace-Up Casual Shoes with PU upper",
+            about: `Care
+                    Wipe with a clean, dry cloth when needed
+                    Insole Detail
+                    Memory Foam
+                    Fastening
+                    Lace Fastening
+                    Warranty
+                    45 Days Warranty Against Manufacturing Defects
+                    Upper Material
+                    Polyurethane (PU)
+                    Package Contains
+                    Package contains: 1 pair of shoes
+                    Sole Material
+                    TPR sole`,
         },
         {
-            image: "",
-            price: "",
-            title: "",
-            about: "",
+            image: "https://m.media-amazon.com/images/I/810IBzc1OuL._SX695_.jpg",
+            price: "₹3,199",
+            title: "Nike Air Precision III",
+            about: "Performance basketball shoes built for speed, support, and responsive cushioning."
         },
         {
-            image: "",
-            price: "",
-            title: "",
-            about: "",
+            image: "https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/7cd2135eb917467db0d3ad47008c1c1c_9366/Lite_Racer_3.0_Shoes_Blue_GY3095_01_standard.jpg",
+            price: "₹1,499",
+            title: "Adidas Lite Racer 3.0",
+            about: "Lightweight running-inspired sneakers for daily wear and casual comfort."
         },
         {
-            image: "",
-            price: "",
-            title: "",
-            about: "",
+            image: "https://m.media-amazon.com/images/I/51nnHEG330L._SY695_.jpg",
+            price: "₹2,629",
+            title: "Puma Smash v2 L",
+            about: "Classic low-profile sneakers with a premium leather finish for sleek street style."
+        },
+        {
+            image: "https://img.tatacliq.com/images/i15//437Wx649H/MP000000020278862_437Wx649H_202311301537151.jpeg",
+            price: "₹4,499",
+            title: "Reebok Zig Dynamica 2",
+            about: "Training sneakers with bold zigzag midsole design providing maximum energy return."
+        },
+
+        {
+            image: "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRd4u3yBptzVBMxZfYOxrqhyZmf5JvtjPMvrCha9j2Kjp1XlW9OnffOKNBtR7PTTYVswx_y-UC4gfV3fbGWlv6tVWyFhjqu0lyli1L6cS4A5ZoTauM5FCI4tA&usqp=CAc",
+            price: "₹2,066",
+            title: "Court Gamer Sneakers For Men  (White , 9)",
+            about: `Brand: PUMA
+                    Brand: Color White-Black-Dark Myrtle
+                    Color
+                    White
+                    Outer material
+                    Synthetic
+                    Model name
+                    Court Gamer
+                    Ideal for
+                    Men
+                    Occasion
+                    Casual
+                    Type For Casual
+                    Sneakers`,
         }
 
     ]
     return (
         <div>
-            <div className=' w-full flex justify-center overflow-y-auto scrollbar-hide' style={{ height: 'calc(100vh - 2.5rem - 3rem)' }}>
+            <div className=' w-screen flex justify-center overflow-y-auto scrollbar-hide ' style={{ height: 'calc(100vh - 2.5rem - 3rem)' }}>
                 {/* Entire Screen */}
                 <div className='grid grid-cols-1 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 gap-8 p-4'>
                     {data.map((item, index) => (
                         <div key={index} className='w-90 h-130 border flex flex-col'>
 
-                            <div className='flex items-center justify-center overflow-hidden h-[70%] p-2'>
+                            {/* Item Image */}
+
+                            <div className='flex items-center justify-center overflow-hidden h-[70%] p-2 '>
                                 <img className='pt-8 h-100 object-contain' src={item.image} alt="image" />
                             </div>
 
                             <div className='p-2 h-25'>
+                                {/* Itrem Price */}
                                 <div className='text-4xl'>
                                     <h1>{item.price}</h1>
                                 </div>
                                 <div>
-                                    <div className='text-[18px] font-semibold h-7 bg-amber-300 overflow-hidden'>
+                                    {/* Item Name */}
+                                    <div className='text-[18px] font-semibold h-7 bg-amber-00 overflow-hidden'>
                                         <h1>
                                             {item.title}
                                         </h1>
                                     </div>
-
+                                    {/* Item Details */}
                                     <div className='text-[14px] overflow-y-auto h-16 scrollbar-hide'>
                                         <p>
                                             {item.about}
@@ -97,7 +140,9 @@ const Main = () => {
                             </div>
                         </div>
                     ))}
+                    {/* <div className='h-20 w-full md:w-screen bg-gray-300 flex items-center justify-center'><label>About section</label></div> */}
                 </div>
+
             </div>
         </div>
     )
