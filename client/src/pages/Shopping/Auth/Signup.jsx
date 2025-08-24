@@ -1,18 +1,32 @@
 import React, { useState } from 'react'
+import { handelSignup } from '../../../components/auth';
+import { useNavigate } from 'react-router-dom';
 
-const Signup = ({setIslogin}) => {
+const Signup = ({ setIslogin }) => {
+  const navigate = useNavigate()
+  const [f_name, setFName] = useState();
+  const [l_name, setLName] = useState();
+  const name = `${f_name} ${l_name}`
   const [email, setEmail] = useState();
+  const [dob, setDOB] = useState();
+  const [address, setAddress] = useState();
   const [password, setPassword] = useState();
   const [show, setShow] = useState(false);
   const [phone, setPhone] = useState("");
+  
   async function handleSubmit() {
-    console.log("The number is: " + phone);
-
+    const result = await handelSignup(name, email, phone, dob, address, password)
+    
+    if(result.status){
+      //alert(result.res.message)
+      navigate('/')
+    }
+    
   }
   return (
     <div>
-      <div className='flex items-center justify-center w-screen h-screen'>
-        <div className='w-screen h-180 md:w-300 md:h-180 flex justify-center '>
+      <div className='flex items-center justify-center w-screen h-screen '>
+        <div className='w-screen h-180 md:w-300 md:h-180 flex justify-center shadow-2xl'>
 
           <div className='w-[30%] md:w-[30%] sm:w-[30%] flex'>
             <img className='w-full h-full object-cover overflow-hidden' src="https://img.freepik.com/free-psd/shopping-vertical-background_23-2150409471.jpg" alt="Shopping" />
@@ -24,19 +38,19 @@ const Signup = ({setIslogin}) => {
 
               <div >
                 <h1 className=' text-[15px] cursor-default'>SignUp to</h1>
-                <span className='text-3xl font-medium underline cursor-pointer'>Online Shopping</span>
+                <a className='text-3xl font-medium underline cursor-pointer' href='/'>Online Shopping</a>
               </div>
 
               {/* Name */}
               <div className='flex gap-3'>
-                <input className='border p-1 w-[50%]' type="name" placeholder='first name' />
-                <input className='border p-1 w-[50%]' type="email" placeholder='last name' />
+                <input className='border p-1 w-[50%]' type="name" placeholder='first name' onChange={(e) => setFName(e.target.value)} />
+                <input className='border p-1 w-[50%]' type="name" placeholder='last name' onChange={(e) => setLName(e.target.value)} />
               </div>
 
               <div>
                 <input className='border p-1 w-full' type="email" placeholder='enter email' onChange={(e) => setEmail(e.target.value)} />
               </div>
-              
+
 
               {/* Phone Number */}
               <div className='flex gap-3'>
@@ -55,15 +69,15 @@ const Signup = ({setIslogin}) => {
                   }}
                 />
               </div>
-              
+
               {/* DOB */}
               <div>
-                <input className='border p-1 w-full font-light' placeholder='enter DOB' type="date" name="dob" />
+                <input className='border p-1 w-full font-light' placeholder='enter DOB' value={dob} type="date" name="dob" onChange={(e) => setDOB(e.target.value)} />
               </div>
 
               {/* Address */}
               <div>
-                <input className='border p-1 w-full' type="text" placeholder='enter your address' />
+                <input className='border p-1 w-full' type="text" placeholder='enter your address' onChange={(e)=>setAddress(e.target.value)} />
               </div>
 
               {/* PassWord Fiend */}
@@ -106,7 +120,7 @@ const Signup = ({setIslogin}) => {
               {/* <div className="w-full h-[0.5px] bg-black"></div> */}
 
               <div className='text-[15px] flex items-center'>
-                <span>Already have an account ?   <a className='text-blue-800 underline cursor-pointer' onClick={()=>setIslogin(true)}>Login</a></span>
+                <span>Already have an account ?   <a className='text-blue-800 underline cursor-pointer' onClick={() => setIslogin(true)} href='/login'>Login</a></span>
 
               </div>
 

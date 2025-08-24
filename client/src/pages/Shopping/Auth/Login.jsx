@@ -1,20 +1,28 @@
 import React, { useEffect, useState } from 'react'
+import {handelLogin} from '../../../components/auth';
+import { href, Navigate, useNavigate } from 'react-router-dom';
 
-const Login = ({ setAuthuser,setIslogin}) => {
+const Login = ( {setAuthUser} ) => {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [show, setShow] = useState(false);
+    const navigate = useNavigate();
     useEffect(() => {
         //console.log(show);
         //console.log("setIslogin: "+setIslogin);
     })
     async function handleSubmit() {
-        setAuthuser(true)
+        const result = await handelLogin(email,password)
+        //console.log(result.res.data);
+        if(result.status){
+            setAuthUser(result.res.data);
+            navigate('/')
+        }
     }
 
     return (
         <div className='flex items-center justify-center w-screen h-screen'>
-            <div className='w-screen h-180 md:w-300 md:h-180 flex justify-center '>
+            <div className='w-screen h-180 md:w-300 md:h-180 flex justify-center shadow-2xl ring-blue-500'>
 
                 <div className='w-[30%] md:w-[30%] sm:w-[30%] flex'>
                     <img className='w-full h-full object-cover overflow-hidden' src="https://img.freepik.com/free-psd/shopping-vertical-background_23-2150409471.jpg" alt="Shopping" />
@@ -26,7 +34,7 @@ const Login = ({ setAuthuser,setIslogin}) => {
 
                         <div >
                             <h1 className='pb-2 text-[15px] cursor-default'>Login to</h1>
-                            <span className='text-3xl font-medium underline cursor-pointer'>Online Shopping</span>
+                            <a className='text-3xl font-medium underline cursor-pointer' href="/" >Online Shopping</a>
                         </div>
 
                         <div className=''>
@@ -34,7 +42,7 @@ const Login = ({ setAuthuser,setIslogin}) => {
                         </div>
 
                         <div className='flex w-full'>
-                            <input className='border p-2 w-full' type={show ? "text" : "password"} placeholder={show ? "enter password" : "•••••••••••"} onChange={(e) => setPassword(e.target.value)} />
+                            <input className='border p-2 w-full' type={show ? "text" : "password"} placeholder="enter password" onChange={(e) => setPassword(e.target.value)} />
                             <button className='border px-3 border-l-0 cursor-pointer' onClick={() => setShow(!show)}>
                                 {show ? (
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
@@ -55,7 +63,7 @@ const Login = ({ setAuthuser,setIslogin}) => {
                         <div className="w-full h-[0.5px] bg-black"></div>
 
                         <div className='text-[15px] flex items-center'>
-                            <span>Does not have any account ?   <a className='text-blue-800 underline cursor-pointer' onClick={(e)=>setIslogin(false)} >Signup</a></span>
+                            <span>Does not have any account ?   <a className='text-blue-800 underline cursor-pointer' onClick={(e)=>setIslogin(false)} href='/signup' >Signup</a></span>
                         </div>
 
                     </div>

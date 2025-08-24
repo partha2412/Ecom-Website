@@ -1,12 +1,11 @@
 import mongoose from "mongoose";
 
 const UserSchema = new mongoose.Schema({
-    f_name: { type: String, required: true },
-    l_name: { type: String, required: true },
+    name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
-    phone_no: { type: String },
-    dob: { type: Date },
-    address: { type: String },
+    phone_no: { type: String, default:"" },
+    dob: { type: Date, default:"" },
+    address: { type: String, default:"" },
     password: { type: String, required: true },
 
     // Wishlist as array of product IDs

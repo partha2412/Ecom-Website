@@ -9,4 +9,8 @@ router.post('/login',login)
 router.post('/signup',signup)
 router.get('/home',verify_cookie,home)
 
+router.get('/me', verify_cookie, (req, res) => {
+    res.json({ id: req.userId, name: req.userName }); // or full user object
+});
+
 export default router
