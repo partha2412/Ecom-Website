@@ -2,7 +2,7 @@ import axios from 'axios'
 import { useState } from 'react'
 
 
-const server_add = `http://localhost:3000/api`
+const server_add = `http://localhost:3000/api/auth`
 
 export async function handel_AllProduct() {
     try {
@@ -54,7 +54,9 @@ export async function handelGetMe() {
     }
 }
 
-export function handleLogout() {
+export async function handleLogout() {
   localStorage.removeItem('authUser'); // Clear saved user data
-  window.location.href = '/login';    // Redirect to login page
+  const result = await axios.post('/logout')
+  console.log(result)
+  //window.location.href = '/login';    // Redirect to login page
 }

@@ -2,6 +2,7 @@ import NavBar from './Components/NavBar'
 import OptionBar from './Components/OptionBar'
 import Main from './Components/Main'
 import { useEffect } from 'react'
+import ProductDetails from '../ProductDetails'
 
 const Home = ( {authUser} ) => {
 
@@ -12,7 +13,10 @@ const Home = ( {authUser} ) => {
             </div>
             <div>
                 <OptionBar></OptionBar>
+            </div>
+            <div>
                 <Main></Main>
+                {/* <ProductDetails></ProductDetails> */}
             </div>
     
         </div>

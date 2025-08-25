@@ -1,6 +1,10 @@
 import UserModel from "../models/UserDB.js";
-import { generate_cookie } from "./tokenHandle.js";
+import { generateToken } from "../utils/tokenUtils.js";
+import { configDotenv } from "dotenv";
+configDotenv();
 
+
+// Login End point and emit token
 export const login = async (req, res) => {
     const { email, password } = req.body;
     try {
@@ -8,16 +12,21 @@ export const login = async (req, res) => {
         if (!user)
             return res.status(404).send({ message: "User Not Found" })
         if (user.password === password) {
-            generate_cookie(user._id, res);
+            const token = generateToken(user._id)
+            const duration = process.env.SESSION_DURATION;
+
+            res.cookie('token', token, { httpOnly: true, secure: false, maxAge: duration * 60000 })
             return res.status(200).send({ message: "Logged in", data: { id: user._id, name: user.name } })
         }
     } catch (error) {
         console.log(error);
 
-        return res.status(500).send({ message: "server error ok", error })
+        return res.status(500).send({ message: "server error", error })
     }
 }
 
+
+// signuo end point
 export const signup = async (req, res) => {
     const { name, email, phone_no, dob, address, password } = req.body
     if (!name || !email || !password)
@@ -40,3 +49,11 @@ export const signup = async (req, res) => {
     }
 }
 
+export const me = async (req, res)=>{
+    res.json(req.user)
+}
+
+export async function logout(req, res) {
+  res.clearCookie("token");
+  res.json({ message: "Logged out" });
+}
