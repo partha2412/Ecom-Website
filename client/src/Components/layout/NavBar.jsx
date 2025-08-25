@@ -1,23 +1,20 @@
-import React, { useEffect, useState } from 'react'
-import { handelGetMe, handleLogout } from '../../../components/auth'
+import { useContext } from 'react'
+import { useAuth } from '../../hooks/useAuth' 
+import { AuthContext } from '../../context/AuthContext'
 
 const NavBar = () => {
-  const [name, setName] = useState()
-  useEffect(() => {
-    const fetch = async () => {
-      const authUser = await handelGetMe();
-      setName(authUser.name)
-    };
-    fetch();
-  }, [])
+  const { user } = useContext(AuthContext)
 
+  const { handelLogout } = useAuth();
+
+  let name =(user?.name);
 
   return (
     <div>
-      <div className='w-full h-10 bg-amber-300 grid grid-cols-2'>
+      <div className='w-full h-10 bg-amber-300 grid grid-cols-2 fixed'>
 
         <div className='flex items-center pl-2 cursor-pointer'>
-          <div onClick={handleLogout}>
+          <div onClick={handelLogout}>
             <h1>Online Shopping</h1>
           </div>
         </div>
@@ -33,7 +30,7 @@ const NavBar = () => {
                 </div>
               ) : (
                 <div>
-                  <a className='hover:underline cursor-pointer' onClick={handleLogout}>{name}</a>
+                  <a className='hover:underline cursor-pointer' onClick={handelLogout}>{name}</a>
                 </div>
               )}
           </div>

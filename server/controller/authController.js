@@ -14,13 +14,12 @@ export const login = async (req, res) => {
         if (user.password === password) {
             const token = generateToken(user._id)
             const duration = process.env.SESSION_DURATION;
-
+            console.log("logged in")
             res.cookie('token', token, { httpOnly: true, secure: false, maxAge: duration * 60000 })
             return res.status(200).send({ message: "Logged in", data: { id: user._id, name: user.name } })
         }
     } catch (error) {
         console.log(error);
-
         return res.status(500).send({ message: "server error", error })
     }
 }
@@ -33,7 +32,7 @@ export const signup = async (req, res) => {
         return res.status(400).send({ message: "enter data to Create an account" })
     try {
         const check = await UserModel.findOne({ email: email })
-        console.log(check);
+        //console.log(check);
 
         if (check)
             return res.status(400).send({ message: "User Already Exists" })
@@ -42,18 +41,24 @@ export const signup = async (req, res) => {
         })
         if (!user)
             return res.status(400).send({ message: "Not Sucess" })
+        
+        const token = generateToken(user._id)
+        const duration = process.env.SESSION_DURATION;
+        res.cookie('token', token, { httpOnly: true, secure: false, maxAge: duration * 60000 })
+
         console.log("User Created");
-        return res.status(200).send({ message: "User Created !" })
+        return res.status(200).send({ message: "User Created !", data: { id: user._id, name: user.name } })
     } catch (error) {
         return res.status(500).send({ message: "server error", error })
     }
 }
 
-export const me = async (req, res)=>{
+export const me = async (req, res) => {
     res.json(req.user)
 }
 
 export async function logout(req, res) {
-  res.clearCookie("token");
-  res.json({ message: "Logged out" });
+    console.log("loggd out")
+    res.clearCookie("token");
+    res.json({ message: "Logged out" });
 }
