@@ -8,7 +8,7 @@ export async function protect(req, res, next) {
         return res.status(400).send({ message: "Unauthorized user" })
     try {
         const decoded = verifyToken(token)
-        res.user = await UserModel.findById(decoded.id).select("-password");
+        req.user = await UserModel.findById(decoded.id).select("-password");
         next()
     } catch (error) {
         res.status(500).send({message: "Authentication Error, Invalid token"})

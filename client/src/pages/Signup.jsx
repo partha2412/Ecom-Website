@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { handelSignup } from '../../../components/auth';
+//import { handelSignup } from '../../../components/auth';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth';
 
 const Signup = ({ setIslogin }) => {
   const navigate = useNavigate()
@@ -13,14 +14,16 @@ const Signup = ({ setIslogin }) => {
   const [password, setPassword] = useState();
   const [show, setShow] = useState(false);
   const [phone, setPhone] = useState("");
+
+  const {handelSignup} = useAuth();
   
   async function handleSubmit() {
-    const result = await handelSignup(name, email, phone, dob, address, password)
+    await handelSignup(name, email, phone, dob, address, password)
     
-    if(result.status){
-      //alert(result.res.message)
-      navigate('/')
-    }
+    // if(result.status){
+    //   //alert(result.res.message)
+    //   navigate('/')
+    // }
     
   }
   return (

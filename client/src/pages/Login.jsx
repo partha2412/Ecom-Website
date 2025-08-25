@@ -1,28 +1,23 @@
 import React, { useEffect, useState } from 'react'
-import {handelLogin} from '../../../components/auth';
 import { href, Navigate, useNavigate } from 'react-router-dom';
+import {useAuth} from '../hooks/useAuth'
 
-const Login = ( {setAuthUser} ) => {
+const Login = (  ) => {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [show, setShow] = useState(false);
-    const navigate = useNavigate();
-    useEffect(() => {
-        //console.log(show);
-        //console.log("setIslogin: "+setIslogin);
-    })
+
+    const {handelLogin} = useAuth()
+
     async function handleSubmit() {
-        const result = await handelLogin(email,password)
-        //console.log(result.res.data);
-        if(result.status){
-            setAuthUser(result.res.data);
-            navigate('/')
-        }
+        await handelLogin(email,password)
     }
 
     return (
-        <div className='flex items-center justify-center w-screen h-screen'>
-            <div className='w-screen h-180 md:w-300 md:h-180 flex justify-center shadow-2xl ring-blue-500'>
+        <div className='flex items-center justify-center w-screen h-screen '>
+
+
+            <div className='w-screen h-180 md:w-300 md:h-180 flex justify-center shadow-2xl '>
 
                 <div className='w-[30%] md:w-[30%] sm:w-[30%] flex'>
                     <img className='w-full h-full object-cover overflow-hidden' src="https://img.freepik.com/free-psd/shopping-vertical-background_23-2150409471.jpg" alt="Shopping" />
