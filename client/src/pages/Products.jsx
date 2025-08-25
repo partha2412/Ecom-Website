@@ -113,7 +113,7 @@ const Products = () => {
                 {/* Entire Screen */}
                 <div className='grid grid-cols-1 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 gap-8 p-4 mt-10 '>
                     {data.map((item, index) => (
-                        <div key={index} onClick={()=>navigate(`/products`)} className='w-90 h-130 border flex flex-col cursor-pointer hover:bg-gray-200 duration-200 shadow-xl'>
+                        <div key={index} onClick={()=>navigate(`/products/${index}`)} className='w-90 h-130 border flex flex-col cursor-pointer hover:bg-gray-200 duration-200 shadow-xl'>
 
                             {/* Item Image */}
 

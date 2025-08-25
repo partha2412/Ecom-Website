@@ -12,27 +12,35 @@ import ProductDetails from "./pages/ProductDetails"
 
 function AppContent() {
 
-  const [authUser,setAuthuser] = useState();
+  const [authUser, setAuthuser] = useState();
   useEffect(() => {
     async function me() {
-      setAuthuser( await getme() )
+      try {
+        const user = await getme();
+        if(user.name)
+          setAuthuser(user);
+      } catch (err) {
+        console.error("Failed to fetch user:", err);
+      }
     }
-    me()
-  })
+    me();
+  }, []); // ✅ only run once
+
+
   const location = useLocation();
 
   return (
     <>
-      {location.pathname === "/" && <NavBar />}
+      {location.pathname !== "/login" && location.pathname !== "/signup" && <NavBar />}
 
       <Routes>
         <Route path="/login" element={authUser ? <Navigate to='/' /> : <Login />} />
         <Route path="/signup" element={authUser ? <Navigate to='/' /> : <Signup />} />
         <Route path="/" element={<Products />} />
-        <Route path="/products" element={<ProductDetails />} />
+        <Route path="/products/:id" element={<ProductDetails />} />
 
       </Routes>
-      {location.pathname === "/" && <Footer />}
+      {location.pathname !== "/login" && location.pathname !== "/signup" && <Footer />}
     </>
   );
 }
