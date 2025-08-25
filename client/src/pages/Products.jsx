@@ -1,6 +1,8 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Products = () => {
+    const navigate = useNavigate()
     const data = [
         {
             image: "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTSsaFnMP3ijw5fUhIo_k9bCQC86i98EAZ8Chmcgz93a-VAj_KJMp6-rcLiRB9DP2DjJsEm6sxBggMdFFvEhK2x_ESAvSLvSJe5UHbMBcWoztWCkShpGFpY",
@@ -109,9 +111,9 @@ const Products = () => {
             <div className=' w-full flex justify-center overflow-y-auto scrollbar-hide '  >
                 {/* style={{ height: 'calc(100vh - 2.5rem - 3rem)' }} */}
                 {/* Entire Screen */}
-                <div className='grid grid-cols-1 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 gap-8 p-4 mt-10'>
+                <div className='grid grid-cols-1 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 gap-8 p-4 mt-10 '>
                     {data.map((item, index) => (
-                        <div key={index} className='w-90 h-130 border flex flex-col'>
+                        <div key={index} onClick={()=>navigate(`/products`)} className='w-90 h-130 border flex flex-col cursor-pointer hover:bg-gray-200 duration-200 shadow-xl'>
 
                             {/* Item Image */}
 

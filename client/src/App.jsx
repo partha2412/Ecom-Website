@@ -5,17 +5,17 @@ import Signup from "./pages/Signup"
 import Products from "./pages/Products"
 import Footer from "./Components/layout/Footer"
 import { getme } from "./services/authService"
-import { useEffect } from "react"
-
+import { useEffect, useState } from "react"
+import ProductDetails from "./pages/ProductDetails"
 
 
 
 function AppContent() {
 
-  let authUser;
+  const [authUser,setAuthuser] = useState();
   useEffect(() => {
     async function me() {
-      authUser = await getme()
+      setAuthuser( await getme() )
     }
     me()
   })
@@ -24,10 +24,13 @@ function AppContent() {
   return (
     <>
       {location.pathname === "/" && <NavBar />}
+
       <Routes>
         <Route path="/login" element={authUser ? <Navigate to='/' /> : <Login />} />
         <Route path="/signup" element={authUser ? <Navigate to='/' /> : <Signup />} />
         <Route path="/" element={<Products />} />
+        <Route path="/products" element={<ProductDetails />} />
+
       </Routes>
       {location.pathname === "/" && <Footer />}
     </>
