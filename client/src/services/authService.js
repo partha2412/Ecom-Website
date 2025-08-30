@@ -1,3 +1,4 @@
+import axios from 'axios';
 import api from './api'
 
 
@@ -7,6 +8,7 @@ export async function login(email, password) {
 
         //data = response.data.data
         const { data } = response
+
         localStorage.setItem('authUser', JSON.stringify(response.data));
         //console.log(response.data);
         return { res: response.data, status: true }

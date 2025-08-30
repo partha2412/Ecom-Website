@@ -15,11 +15,15 @@ const app = express();
 app.use(cookieParser());
 
 app.use(cors({
-    origin: process.env.ORIGIN || "http://localhost:5173",
+    origin: "http://localhost:5173", // || "process.env.ORIGIN" , // process.env.ORIGIN
     credentials: true
 }))
 
 app.use(express.json())
+
+//  path: "/api/auth/login"
+
+
 app.use('/api/auth', authRouter)
 app.use('/api/products', productRouter)
 app.use('/api/orders', orderRouter)

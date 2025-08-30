@@ -12,10 +12,14 @@ export const login = async (req, res) => {
         if (!user)
             return res.status(404).send({ message: "User Not Found" })
         if (user.password === password) {
+
             const token = generateToken(user._id)
             const duration = process.env.SESSION_DURATION;
+
             console.log("logged in")
+
             res.cookie('token', token, { httpOnly: true, secure: false, maxAge: duration * 60000 })
+            
             return res.status(200).send({ message: "Logged in", data: { id: user._id, name: user.name } })
         }
     } catch (error) {

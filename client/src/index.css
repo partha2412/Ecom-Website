@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+/* @import "tailwindcss/preflight";
+@import "tailwindcss/theme";
+@import "tailwindcss/utilities"; */
+
+
+
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
@@ -20,3 +26,114 @@
     -moz-appearance: textfield;
   }
 }
+
+
+/* code 1 */
+/* Custom keyframes to rotate the gradient */
+@keyframes gradient-rotate {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Utility class for animated gradient */
+.gradient-animated {
+  background-size: 200% 200%;
+  animation: gradient-rotate 3000ms linear infinite;
+}
+
+
+/* code 2 */
+@keyframes spin-gradient {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Wrapper for rotating border or background */
+.gradient-spin-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.5rem; /* same as rounded-3xl */
+  padding: 4px;
+}
+
+.gradient-spin {
+  background: conic-gradient(
+    from 0deg,
+    #fcd34d,  /* amber-300 */
+    #f59e0b,  /* amber-500 */
+    #fcd34d   /* amber-300 again for smooth loop */
+  );
+  animation: spin-gradient 2s linear infinite; /* speed up as needed */
+  position: absolute;
+  inset: 0; /* full size */
+  z-index: 0;
+}
+
+.gradient-content {
+  position: relative;
+  z-index: 1;
+  background: white; /* inner content background */
+  border-radius: 1.25rem;
+  padding: 1rem;
+}
+
+
+/* code 3 */
+@keyframes spin-gradient {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.gradient-rotate {
+  position: relative;
+  overflow: hidden;
+}
+
+.gradient-rotate::before {
+  content: '';
+  position: absolute;
+  inset: -50%; /* makes sure the gradient fully covers while rotating */
+  background: conic-gradient( rgb(254, 202, 48) , rgb(255, 224, 131), rgb(255, 211, 78), #ffa914);
+  animation: spin-gradient 4s linear infinite;
+  z-index: -1; /* keeps it behind the content */
+}
+
+
+/* code 4 */
+@keyframes border-spin {
+  0% {
+    border-image-source: linear-gradient(90deg, #fef08a, #f59e0b); /* amber-200 → amber-500 */
+    border-image-slice: 1;
+  }
+  50% {
+    border-image-source: linear-gradient(90deg, #f59e0b, #fef08a);
+    border-image-slice: 1;
+  }
+  100% {
+    border-image-source: linear-gradient(90deg, #fef08a, #f59e0b);
+    border-image-slice: 1;
+  }
+}
+
+/* Only animate on hover */
+.hover-border-spin:hover {
+  border-style: solid;       /* required for border-image */
+  border-image-slice: 1;
+  animation: border-spin 2s linear infinite;
+}
+

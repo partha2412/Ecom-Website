@@ -1,4 +1,4 @@
-import React from 'react'
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { useNavigate } from 'react-router-dom'
 
 const Products = () => {
@@ -106,38 +106,92 @@ const Products = () => {
         }
 
     ]
+
+
+
     return (
         <div>
             <div className=' w-full flex justify-center overflow-y-auto scrollbar-hide '  >
                 {/* style={{ height: 'calc(100vh - 2.5rem - 3rem)' }} */}
                 {/* Entire Screen */}
-                <div className='grid grid-cols-1 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 gap-8 p-4 mt-10 '>
+                <div className='grid grid-cols-1 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 gap-6 p-4 mt-10 '>
                     {data.map((item, index) => (
-                        <div key={index} onClick={()=>navigate(`/products/${index}`)} className='w-90 h-130 border flex flex-col cursor-pointer hover:bg-gray-200 duration-200 shadow-xl'>
 
-                            {/* Item Image */}
 
-                            <div className='flex items-center justify-center overflow-hidden h-[70%] p-2 '>
-                                <img className='pt-8 h-100 object-contain' src={item.image} alt="image" />
-                            </div>
 
-                            <div className='p-2 h-25'>
-                                {/* Itrem Price */}
-                                <div className='text-4xl'>
-                                    <h1>{item.price}</h1>
-                                </div>
-                                <div>
-                                    {/* Item Name */}
-                                    <div className='text-[18px] font-semibold h-7 bg-amber-00 overflow-hidden'>
-                                        <h1>
-                                            {item.title}
-                                        </h1>
+                        // hover:bg-gradient-to-r from-amber-100 to-amber-500 gradient-animated 
+                        <div>
+                            <div className='p-[6px] rounded-3xl transform transition-all hover:scale-105 duration-160 shadow-xl gradient-rotate bg-amber-200 '>
+                                <div key={index} onClick={() => navigate(`/products/${index}`)} className=' w-90 h-130 p-2 rounded-3xl flex flex-col duration-150 cursor-pointer bg-white '>
+
+                                    {/* Item Image */}
+
+                                    <div className='flex items-center justify-center overflow-hidden h-[70%] p-2 '>
+                                        <img className='pt-8 h-100 object-contain' src={item.image} alt="image" />
                                     </div>
-                                    {/* Item Details */}
-                                    <div className='text-[14px] overflow-y-auto h-16 scrollbar-hide'>
-                                        <p>
-                                            {item.about}
-                                        </p>
+
+                                    <div className='p-2 h-25 relative '>
+
+                                        {/* Wishlist Button (always visible now) */}
+                                        <div className="absolute bottom-28 right-6">
+                                            <div className="flex justify-center items-center bg-amber-200/90 w-10 h-10 rounded-full transition-all transform hover:scale-110 cursor-pointer shadow-lg ">
+                                                {/* You can put an SVG heart icon inside */}
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6 text-amber-600">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+                                                </svg>
+                                            </div>
+                                        </div>
+
+                                        {/* Itrem Price */}
+                                        <div className='flex gap-5'>
+                                            <div className='text-4xl text-amber-600'>
+                                                <h1>{item.price}</h1>
+                                            </div>
+
+                                            <div className='flex-2 flex justify-center gap-2 '>
+
+                                                {/* Buy Button */}
+
+                                                <button className=' w-20 hover:w-30 border-amber-500 rounded-xl text-amber-700 border-2 p-2 font-bold hover:bg-amber-100 duration-200 shadow-md '>buy</button>
+
+
+                                                {/* Cart Button */}
+
+                                                <div className='flex flex-row justify-center gap-3 items-center w-20 hover:w-30 border-amber-500 rounded-xl text-amber-700 border-2 p-2 font-bold hover:bg-amber-100 duration-200 shadow-md relative overflow-hidden group '>
+                                                    <div className=''>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                                                        </svg>
+                                                    </div>
+                                                    <div id="badge" className='size-6 rounded-full absolute left-20 top-1.2 flex items-center justify-center transition-all duration-300 group-hover:left-20'>
+                                                        {/* <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6 ">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                                                        </svg> */}
+
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                                                            <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clip-rule="evenodd" />
+                                                        </svg>
+
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            {/* Item Name */}
+                                            <div className='text-[18px] font-semibold h-7 bg-amber-00 overflow-hidden'>
+                                                <h1>
+                                                    {item.title}
+                                                </h1>
+                                            </div>
+                                            {/* Item Details */}
+                                            <div className='text-[14px] overflow-y-auto h-16 scrollbar-hide'>
+                                                <p>
+                                                    {item.about}
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
