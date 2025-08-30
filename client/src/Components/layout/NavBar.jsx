@@ -11,7 +11,7 @@ const NavBar = () => {
 
   return (
     <div>
-      <div className='w-full h-10 bg-amber-300 grid grid-cols-2 fixed'>
+      <div className='fixed w-full h-10 bg-amber-300 grid grid-cols-2 z-50 '>
 
         <div className='flex items-center pl-2 cursor-pointer'>
           <div onClick={handelLogout}>

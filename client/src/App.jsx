@@ -8,7 +8,8 @@ import { getme } from "./services/authService"
 import { useEffect, useState } from "react"
 import ProductDetails from "./pages/ProductDetails"
 import Home from "./pages/Home"
-import Test from "./pages/Test"
+import Test from "./pages/ProductPage"
+import ProductPage from "./pages/ProductPage"
 
 
 
@@ -38,7 +39,7 @@ function AppContent() {
       <Routes>
         <Route path="/login" element={authUser ? <Navigate to='/' /> : <Login />} />
         <Route path="/signup" element={authUser ? <Navigate to='/' /> : <Signup />} />
-        <Route path="/" element={<Products/>} />
+        <Route path="/" element={<ProductPage/>} />
         <Route path="/products" element={<Products/>} />
         <Route path="/test" element={<Test></Test>} />
         <Route path="/products/:id" element={<ProductDetails />} />
