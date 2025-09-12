@@ -14,7 +14,7 @@ export const login = async (req, res) => {
         if (user.password === password) {
 
             const token = generateToken(user._id)
-            const duration = process.env.SESSION_DURATION;
+            const duration = process.env.SESSION_DURATION || 10;
 
             console.log("logged in")
 
