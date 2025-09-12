@@ -1,6 +1,11 @@
-import React from 'react'
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
+import OptionBar from '../Components/layout/OptionBar';
+import Tick from '../Components/common/Tick';
 
 const Products = () => {
+    const navigate = useNavigate()
     const data = [
         {
             image: "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTSsaFnMP3ijw5fUhIo_k9bCQC86i98EAZ8Chmcgz93a-VAj_KJMp6-rcLiRB9DP2DjJsEm6sxBggMdFFvEhK2x_ESAvSLvSJe5UHbMBcWoztWCkShpGFpY",
@@ -104,38 +109,104 @@ const Products = () => {
         }
 
     ]
+
+    const [wished, setWished] = useState(Array(data.length).fill(false));
+
+    const toggleWish = (index) => {
+        const newWished = [...wished];
+        newWished[index] = !newWished[index];
+        setWished(newWished);
+    }
+
+
     return (
-        <div>
-            <div className=' w-full flex justify-center overflow-y-auto scrollbar-hide '  >
-                {/* style={{ height: 'calc(100vh - 2.5rem - 3rem)' }} */}
+        <div className='pt-0 ' >
+            <div className=' relative  flex justify-center overflow-y-auto scrollbar-hide ' >
+
                 {/* Entire Screen */}
-                <div className='grid grid-cols-1 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 gap-8 p-4 mt-10'>
+                <div className='grid sm:grid-cols-1 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 gap-6 p-4 mt-10 '>
                     {data.map((item, index) => (
-                        <div key={index} className='w-90 h-130 border flex flex-col'>
 
-                            {/* Item Image */}
 
-                            <div className='flex items-center justify-center overflow-hidden h-[70%] p-2 '>
-                                <img className='pt-8 h-100 object-contain' src={item.image} alt="image" />
-                            </div>
+                        // hover:bg-gradient-to-r from-amber-100 to-amber-500 gradient-animated 
+                        <div>
+                            <div className='p-[6px] rounded-3xl transform transition-all hover:scale-105 duration-150 shadow-xl gradient-rotate bg-amber-300 '>
+                                <div key={index} className=' w-90 h-130 p-2 rounded-3xl flex flex-col duration-150 hover:bg-amber-300 bg-amber-300 '>
 
-                            <div className='p-2 h-25'>
-                                {/* Itrem Price */}
-                                <div className='text-4xl'>
-                                    <h1>{item.price}</h1>
-                                </div>
-                                <div>
-                                    {/* Item Name */}
-                                    <div className='text-[18px] font-semibold h-7 bg-amber-00 overflow-hidden'>
-                                        <h1>
-                                            {item.title}
-                                        </h1>
+                                    {/* Item Image */}
+                                    <div className='flex items-center justify-center overflow-hidden h-[70%] p-2 cursor-pointer ' onClick={() => navigate(`/products/${index}`)}>
+                                        <img className='pt-8 h-100 object-contain' src={item.image} alt="image" />
                                     </div>
-                                    {/* Item Details */}
-                                    <div className='text-[14px] overflow-y-auto h-16 scrollbar-hide'>
-                                        <p>
-                                            {item.about}
-                                        </p>
+
+                                    <div className='p-2 h-25 relative '>
+                                        {/* Wishlist Button (always visible now) */}
+
+                                        <div className="absolute bottom-28 right-6">
+                                            <button className="flex justify-center items-center bg-amber-400/80 w-10 h-10 rounded-full transition-all transform hover:scale-110 cursor-pointer shadow-lg " onClick={() => toggleWish(index)}  >
+
+                                                {/* SVG heart icon */}
+                                                {!wished[index] ? (
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-7 text-amber-700">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+                                                    </svg>
+                                                ) : (
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-7 text-amber-700 ">
+                                                        <path d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z" />
+                                                    </svg>
+                                                )}
+
+                                            </button>
+                                        </div>
+
+                                        {/* Itrem Price */}
+                                        <div className='flex gap-5'>
+                                            <div className='text-4xl text-amber-700'>
+                                                <h1>{item.price}</h1>
+                                            </div>
+
+                                            <div className='flex-2 flex justify-center gap-2 '>
+
+                                                {/* Buy Button */}
+                                                <button className='cursor-pointer w-20 hover:w-30 border-amber-500 rounded-xl text-amber-700 border-2 p-2 font-bold hover:bg-amber-100 duration-200 shadow-md '>buy</button>
+
+                                                {/* Cart Button */}
+                                                <button className='flex flex-row justify-center gap-3 items-center cursor-pointer w-20 hover:w-30 border-amber-500 rounded-xl text-amber-700 border-2 p-2 font-bold hover:bg-amber-100 duration-200 shadow-md relative overflow-hidden group '>
+
+                                                    {/* Cart Left */}
+                                                    <div id="bridge" className=' absolute right-20 top-1.2 flex items-center justify-center transition-all duration-300 group-hover:right-20'>
+                                                        <button className=' bg-amber-600 size-8 cursor-pointer rounded-full text-amber-100 text-[14px] font-bold hover:bg-amber-400 duration-200'>-1</button>
+                                                    </div>
+
+                                                    {/* Cart icon */}
+                                                    <div>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                                                        </svg>
+                                                    </div>
+
+                                                    {/* Cart Right */}
+                                                    <div id="bridge" className=' absolute left-20 top-1.2 flex items-center justify-center transition-all duration-300 group-hover:left-20'>
+                                                        <button className=' bg-amber-600 size-8 cursor-pointer rounded-full text-amber-100 text-[14px] font-bold hover:bg-amber-400 duration-200'>+1</button>
+                                                    </div>
+
+
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            {/* Item Name */}
+                                            <div className='text-[18px] font-semibold h-7 bg-amber-00 overflow-hidden'>
+                                                <h1>
+                                                    {item.title}
+                                                </h1>
+                                            </div>
+                                            {/* Item Details */}
+                                            <div className='text-[14px] overflow-y-auto h-16 scrollbar-hide'>
+                                                <p>
+                                                    {item.about}
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

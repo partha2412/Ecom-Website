@@ -17,7 +17,7 @@ export function useAuth() {
 
     async function handelSignup(name, email, phone_no, dob, address, password) {
         const result = await signup(name, email, phone_no, dob, address, password);
-        console.log(result);
+        //console.log(result);
         if(result.status){
             setUser(result.data)
             window.location.href ='/'

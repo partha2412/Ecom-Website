@@ -16,13 +16,11 @@ const Login = (  ) => {
     return (
         <div className='flex items-center justify-center w-screen h-screen '>
 
-
             <div className='w-screen h-180 md:w-300 md:h-180 flex justify-center shadow-2xl '>
 
                 <div className='w-[30%] md:w-[30%] sm:w-[30%] flex'>
                     <img className='w-full h-full object-cover overflow-hidden' src="https://img.freepik.com/free-psd/shopping-vertical-background_23-2150409471.jpg" alt="Shopping" />
                 </div>
-
 
                 <div className='bg-amber-300 w-[80%] md:w-[70%] flex items-center justify-center '>
                     <div className='sm:border-0 lg:border md:border w-120 h-140 p-6 pt-10 flex flex-col duration-200 gap-10 md:text-2xl sm:text-[15px]'>
