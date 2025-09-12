@@ -18,7 +18,7 @@ const OptionBar = ({ setShow }) => {
 
       {/* Sliding sidebar */}
       <div
-        className={`fixed top-0 left-0 h-full w-100 bg-amber-300 border pt-14 p-2 transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 left-0 h-full w-100 bg-amber-300 border pt-24 p-2 transform transition-transform duration-300 ease-in-out ${
           open ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -33,8 +33,9 @@ const OptionBar = ({ setShow }) => {
         </div>
 
         {/* Sidebar content */}
-        <div className="border p-2 pt-12">
+        <div className="border p-2">
           <h1>Range</h1>
+          
         </div>
       </div>
     </div>

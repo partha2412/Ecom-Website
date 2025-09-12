@@ -10,6 +10,8 @@ import ProductDetails from "./pages/ProductDetails"
 import Home from "./pages/Home"
 import Test from "./pages/ProductPage"
 import ProductPage from "./pages/ProductPage"
+import SubNavBar from "./Components/layout/SubNavBar"
+import Landing from "./pages/Landing"
 
 
 
@@ -34,17 +36,19 @@ function AppContent() {
 
   return (
     <>
-      {location.pathname !== "/login" && location.pathname !== "/signup" && <NavBar />}
+      {location.pathname !== "/login" && location.pathname !== "/signup" && location.pathname !== "/landing" && <NavBar />}
+      {location.pathname !== "/login" && location.pathname !== "/signup" && location.pathname !== "/landing" && <SubNavBar/>}
+      {/* <SubNavBar></SubNavBar> */}
 
       <Routes>
         <Route path="/login" element={authUser ? <Navigate to='/' /> : <Login />} />
         <Route path="/signup" element={authUser ? <Navigate to='/' /> : <Signup />} />
         <Route path="/" element={<ProductPage/>} />
         <Route path="/products" element={<Products/>} />
-        <Route path="/test" element={<Test></Test>} />
+        <Route path="/landing" element={<Landing/>} />
         <Route path="/products/:id" element={<ProductDetails />} />
       </Routes>
-      {location.pathname !== "/login" && location.pathname !== "/signup" && <Footer />}
+      {location.pathname !== "/login" && location.pathname !== "/signup" && location.pathname !== "/landing" && <Footer />}
     </>
   );
 }
