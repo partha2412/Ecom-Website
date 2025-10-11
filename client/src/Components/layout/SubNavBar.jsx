@@ -10,7 +10,7 @@ const SubNavBar = () => {
                 <div className='flex items-center pl-4 scale- md:scale-none'>
                     <div className='flex flex-col justify-center items-center gap-1 cursor-pointer hover:shadow-sm shadow-amber-400 duration-200' class={filter ? " shadow-amber-900 shadow-sm" : null}    >
                         <div className='p-2' onClick={() => setFilter(!filter)}>
-                            <i class="fa-solid fa-filter" ></i>
+                            <i className="fa-solid fa-filter" ></i>
                         </div>
                         {filter ? (
                             <Popup_Options />
@@ -73,8 +73,8 @@ const SubNavBar = () => {
                                 <i class="fa-solid fa-cart-shopping"></i>
                             </div>
                             {/* <div className='size-5 bg-amber-100 border-1 border-amber-500 rounded-full flex justify-center items-center'>
-                            <span className='font-semibold text-amber-700'>3</span>
-                        </div> */}
+                                <span className='font-semibold text-amber-700'>3</span>
+                            </div> */}
                             <div>
                                 <button className='flex items-center justify-center bg-amber-100 size-5 cursor-pointer rounded-full text-amber-600 text-[14px] md:text-[18px] font-semibold '>3</button>
                             </div>

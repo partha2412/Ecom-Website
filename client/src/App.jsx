@@ -12,6 +12,7 @@ import Test from "./pages/ProductPage"
 import ProductPage from "./pages/ProductPage"
 import SubNavBar from "./Components/layout/SubNavBar"
 import Landing from "./pages/Landing"
+import AdminDashboard from "./pages/AdminDashboard"
 
 
 
@@ -44,6 +45,7 @@ function AppContent() {
         <Route path="/login" element={authUser ? <Navigate to='/' /> : <Login />} />
         <Route path="/signup" element={authUser ? <Navigate to='/' /> : <Signup />} />
         <Route path="/" element={<ProductPage/>} />
+        <Route path="/admindashboard" element={<AdminDashboard/>}></Route>
         <Route path="/products" element={<Products/>} />
         <Route path="/landing" element={<Landing/>} />
         <Route path="/products/:id" element={<ProductDetails />} />
